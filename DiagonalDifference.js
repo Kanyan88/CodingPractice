@@ -12,7 +12,7 @@ function diagonalDifference(n, arr) {
     Fdiag += arr[i][i] + arr[n - 1 - i][n - 1 - i];
     Sdiag += arr[n - 1 - i][i] + arr[i][n - 1 - i];
   }
-  return Sdiag - Fdiag;
+  return Math.abs(Sdiag - Fdiag);
 }
 
 diagonalDifference(5, [
