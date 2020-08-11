@@ -1,4 +1,5 @@
 var readline = require("readline");
+const { exit } = require("process");
 var rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -6,14 +7,18 @@ var rl = readline.createInterface({
 });
 (nCases = 0), (linesPerCase = 0);
 let input = [],
+  ANS = [],
   cID = 0;
 rl.on("line", function (line) {
   if (!nCases) {
-    nCases = line;
-    return;
+    nCases = parseInt(line);
+    return 0;
   }
+
   input.push(line.split(" "));
-  if (input.length > parseInt(input[0][0])) Solve(++cID);
+  if (input.length > parseInt(input[0][0])) ANS.push(Solve(++cID));
+  if (cID === nCases)
+    ANS.forEach((v, i) => console.log(`Case #${i + 1}: ${v}`)), exit();
 });
 
 function Solve(cID) {
@@ -22,6 +27,7 @@ function Solve(cID) {
     R = input[0][1],
     K = input[0][2],
     res = new Set([]);
+
   input.shift();
 
   let i = 0,
@@ -55,10 +61,10 @@ function Solve(cID) {
 
   while (K) {
     t = Math.max(...res);
-    k += t + " ";
+    k += t.toFixed(10) + " ";
     res.delete(t);
     K--;
   }
-  console.log(`Case #${cID}: ${k}`);
   input = [];
+  return k;
 }
