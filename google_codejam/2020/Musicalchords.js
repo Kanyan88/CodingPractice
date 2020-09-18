@@ -5,10 +5,8 @@ var rl = readline.createInterface({
   output: process.stdout,
   terminal: false,
 });
-(nCases = 0), (linesPerCase = 0);
-let input = [],
-  ANS = [],
-  cID = 0;
+let nCases = 0, linesPerCase = 0,
+  input = [], ANS = [], cID = 0;
 rl.on("line", function (line) {
   if (!nCases) {
     nCases = parseInt(line);
